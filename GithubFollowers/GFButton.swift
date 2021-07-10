@@ -19,6 +19,7 @@ class GFButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Custom Initializer
     init(backgroundColor: UIColor, title: String) {
         super.init(frame: .zero)
         
