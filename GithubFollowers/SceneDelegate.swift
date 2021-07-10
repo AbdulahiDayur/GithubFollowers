@@ -18,9 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        // Makes it fillUp the full screen
+        let searchNC = UINavigationController(rootViewController: SearchViewController())
+        let favoriteNC = UINavigationController(rootViewController: FavoritesListViewController())
+        
+        let tabBar = UITabBarController()
+        tabBar.viewControllers = [searchNC, favoriteNC]
+        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        window?.rootViewController = tabBar
+        window?.makeKeyAndVisible()
         
     }
 
