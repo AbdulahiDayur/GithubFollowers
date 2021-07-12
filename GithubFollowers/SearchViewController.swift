@@ -20,11 +20,26 @@ class SearchViewController: UIViewController {
         configureLogoImageView()
         configureTextField()
         configureButton()
+        createDismissKeyboardTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    func createDismissKeyboardTapGesture() {
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func pushFollowerListVC() {
+        let followerListVC = FollowerListViewController()
+        followerListVC.username = usernameTextField.text
+        followerListVC.title = usernameTextField.text
+        
+        navigationController?.pushViewController(followerListVC, animated: true)
     }
     
     func configureLogoImageView() {
@@ -44,6 +59,8 @@ class SearchViewController: UIViewController {
     
     func configureTextField() {
         
+        usernameTextField.delegate = self
+        
         view.addSubview(usernameTextField)
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,7 +76,8 @@ class SearchViewController: UIViewController {
     
     func configureButton() {
         view.addSubview(callToActionButton)
-        callToActionButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
         
@@ -71,4 +89,14 @@ class SearchViewController: UIViewController {
         ])
     }
 
+}
+
+
+extension SearchViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        pushFollowerListVC()
+        return true
+    }
 }
