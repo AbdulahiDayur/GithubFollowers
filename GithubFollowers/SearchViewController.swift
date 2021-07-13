@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
     @objc func pushFollowerListVC() {
         
         guard isUsernameEntered else {
-            alert(title: "Empty Username", message: "Please enter a username. We need to know who to look for.")
+//            alert(title: "Empty Username", message: "Please enter a username. We need to know who to look for.")
             return
         }
     
@@ -54,11 +54,11 @@ class SearchViewController: UIViewController {
         navigationController?.pushViewController(followerListVC, animated: true)
     }
     
-    func alert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
+//    func alert(title: String, message: String) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+//        present(alert, animated: true, completion: nil)
+//    }
     
     func configureLogoImageView() {
          
