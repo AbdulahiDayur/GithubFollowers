@@ -115,6 +115,4 @@ class GFAlertViewController: UIViewController {
     @objc func dismissVC() {
         dismiss(animated: true, completion: nil)
     }
-    
-
 }
