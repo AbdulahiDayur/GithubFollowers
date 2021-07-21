@@ -14,6 +14,8 @@ class FollowerListViewController: UIViewController {
     }
     
     var username: String!
+    var followers: [Follower] = []
+    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
 
@@ -23,6 +25,7 @@ class FollowerListViewController: UIViewController {
         configureViewController()
         configureCollectionView()
         getFollowers()
+        configureDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +75,20 @@ class FollowerListViewController: UIViewController {
             }
         }
     }
+    
+    func configureDataSource() {
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.resuseID, for: indexPath) as! FollowerCell
+            cell.set(follower: follower)
+            
+            return cell
+            
+        })
+    }
+    
+    
     
 }
 
