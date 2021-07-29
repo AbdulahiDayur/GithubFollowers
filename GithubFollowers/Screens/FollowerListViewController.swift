@@ -141,6 +141,7 @@ extension FollowerListViewController: UICollectionViewDelegate {
         let follower = activeArray[indexPath.item]
         
         let destVC = UserInfoViewController()
+        destVC.username = follower.login
         let navController = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
         
