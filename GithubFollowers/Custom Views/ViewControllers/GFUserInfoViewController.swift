@@ -49,7 +49,10 @@ class GFUserInfoViewController: UIViewController {
         usernameLabel.text = user.login
         nameLabel.text = user.name ?? ""
         locationLabel.text = user.location ?? "No Location"
+        
         locationImageView.image = UIImage(systemName: SFSymbols.location)
+        locationImageView.tintColor = .secondaryLabel
+        
     }
     
     func layoutUI() {
