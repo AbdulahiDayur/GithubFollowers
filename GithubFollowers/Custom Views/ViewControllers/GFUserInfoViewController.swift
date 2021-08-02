@@ -32,7 +32,7 @@ class GFUserInfoViewController: UIViewController {
         super.viewDidLoad()
         addSubViews()
         layoutUI()
-        
+        configureUIElements()
     }
     
     func addSubViews() {
