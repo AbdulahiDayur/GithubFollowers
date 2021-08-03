@@ -10,18 +10,29 @@ import UIKit
 class UserInfoViewController: UIViewController {
     
     let headerView = UIView()
+    let itemOne = UIView()
+    let itemTwo = UIView()
+    var itemViews: [UIView] = []
     
     var username: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureViewController()
+        layoutUI()
+        getUserInfo()
+    }
+    
+    
+    func configureViewController() {
         view.backgroundColor = .systemBackground
-        
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
-        layoutUI()
-        
+    }
+    
+    
+    func getUserInfo() {
         NetworkManager.shared.getUserInfo(for: username) { [weak self] (result) in
             guard let self = self else {return}
             
@@ -36,22 +47,41 @@ class UserInfoViewController: UIViewController {
             
             }
         }
-        
     }
+    
     
     func layoutUI() {
+        let padding: CGFloat = 20
+        let itemHeight: CGFloat = 140
         
-        view.addSubview(headerView)
-        headerView.translatesAutoresizingMaskIntoConstraints = false
+        itemViews = [headerView, itemOne, itemTwo]
         
-    
+        for itemView in itemViews {
+            view.addSubview(itemView)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            ])
+        }
+        
+        itemOne.backgroundColor = .systemPink
+        itemTwo.backgroundColor = .systemBlue
+        
+        
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            headerView.heightAnchor.constraint(equalToConstant: 180)
+            headerView.heightAnchor.constraint(equalToConstant: 180),
+            
+            itemOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
+            itemOne.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            itemTwo.topAnchor.constraint(equalTo: itemOne.bottomAnchor, constant: padding),
+            itemTwo.heightAnchor.constraint(equalToConstant: itemHeight)
         ])
     }
+    
     
     func add(childVC: UIViewController, to containerView: UIView) {
         addChild(childVC)
@@ -59,6 +89,7 @@ class UserInfoViewController: UIViewController {
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
     }
+    
     
     @objc func dismissVC() {
         dismiss(animated: true)
