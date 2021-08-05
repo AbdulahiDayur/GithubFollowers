@@ -5,6 +5,8 @@
 //  Created by Abdul Dayur on 8/4/21.
 //
 
+
+// This is the super class
 import UIKit
 
 class GFItemInfoViewController: UIViewController {

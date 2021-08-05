@@ -5,6 +5,7 @@
 //  Created by Abdul Dayur on 8/4/21.
 //
 
+//Subclass of ItemInfoVC
 import UIKit
 
 class GFFollowerItemViewController: GFItemInfoViewController {

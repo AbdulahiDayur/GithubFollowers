@@ -3,7 +3,9 @@
 //  GithubFollowers
 //
 //  Created by Abdul Dayur on 7/27/21.
-//
+
+
+//The HEADER OF USERINFO
 
 import UIKit
 
@@ -49,6 +51,7 @@ class GFUserInfoViewController: UIViewController {
         usernameLabel.text = user.login
         nameLabel.text = user.name ?? ""
         locationLabel.text = user.location ?? "No Location"
+        bioLabel.text = user.bio ?? ""
         
         locationImageView.image = UIImage(systemName: SFSymbols.location)
         locationImageView.tintColor = .secondaryLabel
