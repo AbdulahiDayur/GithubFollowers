@@ -137,11 +137,9 @@
 		0F2A9AC926B08B9D00A666F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F2A9AE226BB4DB400A666F0 /* ItemInfoViewControllers */,
 				0F738377269CBFB800CA6D9E /* GFAlertViewController.swift */,
 				0F2A9ACB26B08C3700A666F0 /* GFUserInfoViewController.swift */,
-				0F2A9AD926BB0B6600A666F0 /* GFItemInfoViewController.swift */,
-				0F2A9ADC26BB1AC600A666F0 /* GFRepoItemViewController.swift */,
-				0F2A9ADF26BB436400A666F0 /* GFFollowerItemVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -154,6 +152,16 @@
 				0F738374269CBE7100CA6D9E /* GFBodyLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		0F2A9AE226BB4DB400A666F0 /* ItemInfoViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0F2A9AD926BB0B6600A666F0 /* GFItemInfoViewController.swift */,
+				0F2A9ADC26BB1AC600A666F0 /* GFRepoItemViewController.swift */,
+				0F2A9ADF26BB436400A666F0 /* GFFollowerItemVC.swift */,
+			);
+			path = ItemInfoViewControllers;
 			sourceTree = "<group>";
 		};
 		0F73833B2699267900CA6D9E = {
