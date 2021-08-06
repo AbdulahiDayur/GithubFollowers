@@ -13,6 +13,7 @@ class UserInfoViewController: UIViewController {
     let itemOne = UIView()
     let itemTwo = UIView()
     var itemViews: [UIView] = []
+    var dateLabel = GFBodyLabel(textAlignment: .center)
     
     var username: String!
 
@@ -42,6 +43,8 @@ class UserInfoViewController: UIViewController {
                     self.add(childVC:GFUserInfoViewController(user: user), to: self.headerView)
                     self.add(childVC: GFRepoItemViewController(user: user), to: self.itemOne)
                     self.add(childVC: GFFollowerItemViewController(user: user), to: self.itemTwo)
+                    let myDate = self.getDateWithoutTime(string: user.createdAt)
+                    self.dateLabel.text = "Github since \(myDate ?? "n/a")"
                 }
                 
             case .failure(let error):
@@ -56,7 +59,7 @@ class UserInfoViewController: UIViewController {
         let padding: CGFloat = 20
         let itemHeight: CGFloat = 140
         
-        itemViews = [headerView, itemOne, itemTwo]
+        itemViews = [headerView, itemOne, itemTwo, dateLabel]
         
         for itemView in itemViews {
             view.addSubview(itemView)
@@ -68,7 +71,6 @@ class UserInfoViewController: UIViewController {
             ])
         }
         
-        
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 180),
@@ -77,7 +79,10 @@ class UserInfoViewController: UIViewController {
             itemOne.heightAnchor.constraint(equalToConstant: itemHeight),
             
             itemTwo.topAnchor.constraint(equalTo: itemOne.bottomAnchor, constant: padding),
-            itemTwo.heightAnchor.constraint(equalToConstant: itemHeight)
+            itemTwo.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            dateLabel.topAnchor.constraint(equalTo: itemTwo.bottomAnchor, constant: padding),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
     
