@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import SafariServices
 
-protocol UserInfoVCDelegate {
+
+protocol UserInfoVCDelegate: class {
     func didTapGitHubProfile(for user: User)
     func didTapGetFollowers(for user: User)
 }
@@ -121,9 +121,7 @@ extension UserInfoViewController: UserInfoVCDelegate {
             return
         }
         
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredControlTintColor = .systemGreen
-        present(safariVC, animated: true)
+        presentSafariVC(with: url)
     }
     
     func didTapGetFollowers(for user: User) {
