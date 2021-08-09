@@ -174,6 +174,12 @@ extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelega
 
 extension FollowerListViewController: FollowerListVCDelegate {
     func didRequestFollowers(for username: String) {
-        
+        self.username = username
+        title = username
+        page = 1
+        followers.removeAll()
+        filteredFollowers.removeAll()
+        collectionView.setContentOffset(.zero, animated: true) // scrolls to top
+        getFollowers(username: username, page: page)
     }
 }
