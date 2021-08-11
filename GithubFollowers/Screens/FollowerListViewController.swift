@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol FollowerListVCDelegate: class {
+protocol FollowerListVCDelegate: AnyObject {
     func didRequestFollowers(for username: String)
 }
 
@@ -46,6 +46,8 @@ class FollowerListViewController: UIViewController {
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     func configureCollectionView() {
@@ -122,6 +124,10 @@ class FollowerListViewController: UIViewController {
         }
     }
     
+    @objc func addButtonTapped() {
+        
+    }
+    
     
 }
 
@@ -179,7 +185,7 @@ extension FollowerListViewController: FollowerListVCDelegate {
         page = 1
         followers.removeAll()
         filteredFollowers.removeAll()
-        collectionView.setContentOffset(.zero, animated: true) // scrolls to top
+        updateData(on: followers) // scrolls to top
         getFollowers(username: username, page: page)
     }
 }
