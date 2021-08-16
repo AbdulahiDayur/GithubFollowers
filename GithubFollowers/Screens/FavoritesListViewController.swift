@@ -13,5 +13,18 @@ class FavoritesListViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBlue
+        
+        PersistenceManager.retrieveFavorites { (result) in
+            switch result {
+            case .success(let favorites):
+                for fav in favorites {
+                    print(fav.login)
+                }
+                
+                
+            case .failure(let error):
+                break
+            }
+        }
     }
 }
