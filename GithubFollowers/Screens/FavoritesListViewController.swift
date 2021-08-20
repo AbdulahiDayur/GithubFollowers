@@ -101,6 +101,4 @@ extension FavoritesListViewController: UITableViewDataSource, UITableViewDelegat
             
         }
     }
-    
-    
 }
