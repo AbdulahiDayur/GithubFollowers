@@ -45,11 +45,7 @@ class SearchViewController: UIViewController {
             return
         }
     
-        
-        let followerListVC = FollowerListViewController()
-
-        followerListVC.username = usernameTextField.text
-        followerListVC.title = usernameTextField.text
+        let followerListVC = FollowerListViewController(username: usernameTextField.text!)
 
         navigationController?.pushViewController(followerListVC, animated: true)
     }
@@ -59,7 +55,7 @@ class SearchViewController: UIViewController {
          
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "gh-logo")!
+        logoImageView.image = UIImage(named: "gh-logo")
         
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
